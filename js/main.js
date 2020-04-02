@@ -13,11 +13,22 @@ $(document).ready(function(){
     // creo una variabile che punta all'immagine del carousel con la class "active"
     var imgActive = $('.carousel-wrapper img.active');
 
-    // rimuovo la class "active" all'immagine
-    imgActive.removeClass("active");
+    // se lo slider arriva all'ultima immagine la class "active" viene data alla prima immagine
+    if (imgActive.hasClass('last')) {
 
-    // aggiungo la class "active" all'img successiva a quella a cui ho rimosso la classe
-    imgActive.next().addClass("active");
+      imgActive.removeClass("active"); // rimozione class "active" all'ultima immagine
+      $('.carousel-wrapper img.first').addClass("active"); // la class "active" viene aggiunta alla prima immagine
+
+      // altrimenti la class "active" viene rimossa e viene data all'immagine successiva
+    } else {
+
+      // rimuovo la class "active" all'immagine
+      imgActive.removeClass("active");
+
+      // aggiungo la class "active" all'img successiva a quella a cui ho rimosso la classe
+      imgActive.next().addClass("active");
+    }
+
   }
 
 
