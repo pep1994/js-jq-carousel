@@ -12,12 +12,14 @@
 }
 
 .carousel-wrapper {
-  width: 700px;
+  width: 800px;
+  height: 50vh;
 }
 
 .carousel-wrapper img {
   display: none;
   width: 100%;
+  height: 100%;
 }
 
 .carousel-wrapper img.active {
@@ -26,6 +28,7 @@
 
 .next, .prev {
   font-size: 40px;
+  cursor: pointer;
 }
 
 .next {
