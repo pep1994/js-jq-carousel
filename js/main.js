@@ -12,6 +12,11 @@ $(document).ready(function(){
     prevImg // creo una funzione a parte, verrà eseguita al click sull'icona "prev"
   );
 
+  // collego l'evento click ad ogni icona della navigazione
+  $('.nav i').click(
+    clickNavBall
+  );
+
   // funzione next
   function nextImg() {
 
@@ -82,5 +87,42 @@ $(document).ready(function(){
 
   }
 
+  // funzione per il click su ogni pallino della navigazione
+  function clickNavBall() {
+
+    var navBall = $('.nav i'); // variabile che punta ad ogni icona a pallino
+    $(this).addClass("active"); // aggiungo la class "active" al pallino che viene cliccato
+    $(this).siblings().removeClass("active"); // rimuovo la class "active" agli altri pallini quando non vengono cliccati
+    console.log(navBall[0]);
+
+    // se il primo pallino ha la class "active"
+    if ($('.nav i:first-child').hasClass('active')) {
+
+      // allora rimuovo la class "active" a tutte le immagini tranne la prima
+      $('.carousel-wrapper img').removeClass('active');
+      $('.carousel-wrapper img:first-child').addClass('active');
+
+      // altrimenti se il secondo pallino ha la class "active"
+    } else if ($('.nav i:nth-child(2)').hasClass('active')) {
+
+      // allora rimuovo la class "active" a tutte le immagini tranne la seconda
+      $('.carousel-wrapper img').removeClass('active');
+      $('.carousel-wrapper img:nth-child(2)').addClass('active');
+
+      // altrimenti se il terzo pallino ha la class "active"
+    } else if ($('.nav i:nth-child(3)').hasClass('active')) {
+
+      // allora rimuovo la class "active" a tutte le immagini tranne la terza
+      $('.carousel-wrapper img').removeClass('active');
+      $('.carousel-wrapper img:nth-child(3)').addClass('active');
+
+      // altrimenti se il quarto pallino ha la class "active"
+    } else if ($('.nav i:last-child').hasClass('active')) {
+
+      // allora rimuovo la class "active" a tutte le immagini tranne la quarta
+      $('.carousel-wrapper img').removeClass('active');
+      $('.carousel-wrapper img:last-child').addClass('active');
+    }
+  }
 
 });
