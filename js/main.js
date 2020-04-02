@@ -17,6 +17,11 @@ $(document).ready(function(){
     clickNavBall
   );
 
+  // collego l'evento premere un tasto sulla tastiera
+  $('body').keyup(
+    moveKey
+  );
+
   // funzione next
   function nextImg() {
 
@@ -124,5 +129,61 @@ $(document).ready(function(){
       $('.carousel-wrapper img:last-child').addClass('active');
     }
   }
+
+  // funzione movekey
+  function moveKey(e) {
+
+    var imgActive = $('.carousel-wrapper img.active'); // creo una variabile che punta all'immagine del carousel con la class "active"
+    var navActive = $('.nav i.active'); // creo una variabile che punta all'icona della navigazione a pallini con la class "active"
+
+    if (e.keyCode === 39) {
+
+      // rimuovo la class "active" all'immagine
+      imgActive.removeClass("active");
+
+      // aggiungo la class "active" all'img successiva a quella a cui ho rimosso la classe
+      imgActive.next().addClass("active");
+
+      // rimuovo la class "active" all'icona della navigazione a pallini
+      navActive.removeClass("active");
+
+      // aggiungo la class "active" all'icona successiva a quella a cui ho rimosso la classe
+      navActive.next().addClass("active");
+
+    }
+
+    if ((e.keyCode === 39) && (imgActive.hasClass('last'))) {
+      imgActive.removeClass("active"); // rimozione class "active" all'ultima immagine
+      $('.carousel-wrapper img.first').addClass("active"); // la class "active" viene aggiunta alla prima immagine
+
+      navActive.removeClass("active"); // rimozione class "active" all'ultima icona della navigazione
+      $('.nav i.first').addClass("active"); // la class "active" viene aggiunta alla prima icona
+
+    } else if (e.keyCode === 37) {
+      // rimuovo la class "active" all'immagine
+      imgActive.removeClass("active");
+
+      // aggiungo la class "active" all'img successiva a quella a cui ho rimosso la classe
+      imgActive.prev().addClass("active");
+
+      // rimuovo la class "active" all'icona della navigazione a pallini
+      navActive.removeClass("active");
+
+      // aggiungo la class "active" all'icona precedente a quella a cui ho rimosso la classe
+      navActive.prev().addClass("active");
+
+    }
+
+    if ((e.keyCode === 37) && (imgActive.hasClass('first'))) {
+
+      imgActive.removeClass("active"); // rimozione class "active" alla prima immagine
+      $('.carousel-wrapper img.last').addClass("active"); // la class "active" viene aggiunta all'ultima immagine
+
+      navActive.removeClass("active"); // rimozione class "active" alla prima icona della navigazione
+      $('.nav i.last').addClass("active"); // la class "active" viene aggiunta alla prima icona
+      
+    }
+  }
+
 
 });
