@@ -98,36 +98,12 @@ $(document).ready(function(){
     var navBall = $('.nav i'); // variabile che punta ad ogni icona a pallino
     $(this).addClass("active"); // aggiungo la class "active" al pallino che viene cliccato
     $(this).siblings().removeClass("active"); // rimuovo la class "active" agli altri pallini quando non vengono cliccati
-    console.log(navBall[0]);
+    console.log(navBall);
+    var idx = navBall.index(this); // indice del pallino cliccato
+    console.log(idx);
+    $('.carousel-wrapper img').removeClass('active'); // faccio somparire tutte le immagini
+    $('.carousel-wrapper img').eq(idx).addClass('active'); // do la class active solo a quella immagine che ha lo stesso indice del pallino
 
-    // se il primo pallino ha la class "active"
-    if ($('.nav i:first-child').hasClass('active')) {
-
-      // allora rimuovo la class "active" a tutte le immagini tranne la prima
-      $('.carousel-wrapper img').removeClass('active');
-      $('.carousel-wrapper img:first-child').addClass('active');
-
-      // altrimenti se il secondo pallino ha la class "active"
-    } else if ($('.nav i:nth-child(2)').hasClass('active')) {
-
-      // allora rimuovo la class "active" a tutte le immagini tranne la seconda
-      $('.carousel-wrapper img').removeClass('active');
-      $('.carousel-wrapper img:nth-child(2)').addClass('active');
-
-      // altrimenti se il terzo pallino ha la class "active"
-    } else if ($('.nav i:nth-child(3)').hasClass('active')) {
-
-      // allora rimuovo la class "active" a tutte le immagini tranne la terza
-      $('.carousel-wrapper img').removeClass('active');
-      $('.carousel-wrapper img:nth-child(3)').addClass('active');
-
-      // altrimenti se il quarto pallino ha la class "active"
-    } else if ($('.nav i:last-child').hasClass('active')) {
-
-      // allora rimuovo la class "active" a tutte le immagini tranne la quarta
-      $('.carousel-wrapper img').removeClass('active');
-      $('.carousel-wrapper img:last-child').addClass('active');
-    }
   }
 
   // funzione movekey
@@ -181,7 +157,7 @@ $(document).ready(function(){
 
       navActive.removeClass("active"); // rimozione class "active" alla prima icona della navigazione
       $('.nav i.last').addClass("active"); // la class "active" viene aggiunta alla prima icona
-      
+
     }
   }
 

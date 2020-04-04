@@ -47,6 +47,10 @@
   transform: translate(-50%);
 }
 
+.nav i {
+  cursor: pointer;
+}
+
 .nav i.active {
   background-color: #000;
   border-radius: 100%;
