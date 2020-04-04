@@ -32,8 +32,13 @@ $(document).ready(function(){
     // se lo slider arriva all'ultima immagine la class "active" viene data alla prima immagine
     if (imgActive.hasClass('last')) {
 
-      imgActive.removeClass("active"); // rimozione class "active" all'ultima immagine
-      $('.carousel-wrapper img.first').addClass("active"); // la class "active" viene aggiunta alla prima immagine
+      imgActive.addClass('next-to-right-2'); 
+      imgActive.removeClass("active next-to-right"); // rimozione class "active" all'ultima immagine
+      imgActive.prev().removeClass("next-to-right-2 prev-to-left prev-to-left-2");
+      imgActive.removeClass("prev-to-left prev-to-left-2");
+      imgActive.next().removeClass("prev-to-left prev-to-left-2");
+      $('.carousel-wrapper img.first').addClass("active next-to-right"); // la class "active" viene aggiunta alla prima immagine
+      $('.carousel-wrapper img.first').removeClass('prev-to-left prev-to-left-2');
 
       navActive.removeClass("active"); // rimozione class "active" all'ultima icona della navigazione
       $('.nav i.first').addClass("active"); // la class "active" viene aggiunta alla prima icona
@@ -42,10 +47,15 @@ $(document).ready(function(){
     } else {
 
       // rimuovo la class "active" all'immagine
-      imgActive.removeClass("active");
+      imgActive.addClass('next-to-right-2');
+
+      imgActive.removeClass("active next-to-right");
+      imgActive.prev().removeClass("next-to-right-2 prev-to-left prev-to-left-2");
+      imgActive.removeClass("prev-to-left prev-to-left-2");
+      imgActive.next().removeClass("prev-to-left prev-to-left-2");
 
       // aggiungo la class "active" all'img successiva a quella a cui ho rimosso la classe
-      imgActive.next().addClass("active");
+      imgActive.next().addClass("active next-to-right");
 
       // rimuovo la class "active" all'icona della navigazione a pallini
       navActive.removeClass("active");
@@ -53,6 +63,10 @@ $(document).ready(function(){
       // aggiungo la class "active" all'icona successiva a quella a cui ho rimosso la classe
       navActive.next().addClass("active");
 
+    }
+
+    if (imgActive.hasClass('first')) {
+      $('.carousel-wrapper img.last').removeClass("next-to-right next-to-right-2");
     }
 
   }
@@ -68,8 +82,13 @@ $(document).ready(function(){
     // se lo slider è alla prima immagine la class "active" viene data all'ultima immagine
     if (imgActive.hasClass('first')) {
 
-      imgActive.removeClass("active"); // rimozione class "active" alla prima immagine
-      $('.carousel-wrapper img.last').addClass("active"); // la class "active" viene aggiunta all'ultima immagine
+      imgActive.addClass("prev-to-left-2");
+      imgActive.removeClass("active next-to-right"); // rimozione class "active" alla prima immagine
+      imgActive.prev().removeClass("next-to-right-2 prev-to-left prev-to-left-2");
+      imgActive.removeClass("prev-to-left next-to-right-2");
+      imgActive.next().removeClass("prev-to-left prev-to-left-2");
+
+      $('.carousel-wrapper img.last').addClass("active prev-to-left"); // la class "active" viene aggiunta all'ultima immagine
 
       navActive.removeClass("active"); // rimozione class "active" alla prima icona della navigazione
       $('.nav i.last').addClass("active"); // la class "active" viene aggiunta alla prima icona
@@ -78,16 +97,24 @@ $(document).ready(function(){
     } else {
 
       // rimuovo la class "active" all'immagine
-      imgActive.removeClass("active");
+      imgActive.addClass("prev-to-left-2");
+      imgActive.removeClass("active prev-to-left");
+      imgActive.next().removeClass("prev-to-left-2 next-to-right next-to-right-2");
+      imgActive.removeClass("next-to-right next-to-right-2");
+      imgActive.prev().removeClass("next-to-right next-to-right-2");
 
       // aggiungo la class "active" all'img successiva a quella a cui ho rimosso la classe
-      imgActive.prev().addClass("active");
+      imgActive.prev().addClass("active prev-to-left");
 
       // rimuovo la class "active" all'icona della navigazione a pallini
       navActive.removeClass("active");
 
       // aggiungo la class "active" all'icona precedente a quella a cui ho rimosso la classe
       navActive.prev().addClass("active");
+    }
+
+    if (imgActive.hasClass('last')) {
+      $('.carousel-wrapper img.first').removeClass("prev-to-left prev-to-left-2 next-to-right next-to-right-2");
     }
 
   }
@@ -101,7 +128,7 @@ $(document).ready(function(){
     console.log(navBall);
     var idx = navBall.index(this); // indice del pallino cliccato
     console.log(idx);
-    $('.carousel-wrapper img').removeClass('active'); // faccio somparire tutte le immagini
+    $('.carousel-wrapper img').removeClass('active next-to-right next-to-right-2 prev-to-left prev-to-left-2'); // faccio somparire tutte le immagini
     $('.carousel-wrapper img').eq(idx).addClass('active'); // do la class active solo a quella immagine che ha lo stesso indice del pallino
 
   }
@@ -115,10 +142,16 @@ $(document).ready(function(){
     if (e.keyCode === 39) {
 
       // rimuovo la class "active" all'immagine
-      imgActive.removeClass("active");
+      imgActive.addClass('next-to-right-2');
+
+      imgActive.removeClass("active next-to-right");
+      imgActive.prev().removeClass("next-to-right-2 prev-to-left prev-to-left-2");
+      imgActive.removeClass("prev-to-left prev-to-left-2");
+      imgActive.next().removeClass("prev-to-left prev-to-left-2");
+
 
       // aggiungo la class "active" all'img successiva a quella a cui ho rimosso la classe
-      imgActive.next().addClass("active");
+      imgActive.next().addClass("active next-to-right");
 
       // rimuovo la class "active" all'icona della navigazione a pallini
       navActive.removeClass("active");
@@ -128,19 +161,46 @@ $(document).ready(function(){
 
     }
 
+
+    if ((e.keyCode === 39) && (imgActive.hasClass('first'))) {
+      $('.carousel-wrapper img.last').removeClass("next-to-right next-to-right-2");
+    }
+
     if ((e.keyCode === 39) && (imgActive.hasClass('last'))) {
-      imgActive.removeClass("active"); // rimozione class "active" all'ultima immagine
-      $('.carousel-wrapper img.first').addClass("active"); // la class "active" viene aggiunta alla prima immagine
+
+      imgActive.addClass('next-to-right-2');
+      imgActive.removeClass("active next-to-right"); // rimozione class "active" all'ultima immagine
+      imgActive.prev().removeClass("next-to-right-2 prev-to-left prev-to-left-2");
+      imgActive.removeClass("prev-to-left prev-to-left-2");
+      imgActive.next().removeClass("prev-to-left prev-to-left-2");
+      $('.carousel-wrapper img.first').addClass("active next-to-right"); // la class "active" viene aggiunta alla prima immagine
+      $('.carousel-wrapper img.first').removeClass('prev-to-left prev-to-left-2');
+
+      navActive.removeClass("active"); // rimozione class "active" all'ultima icona della navigazione
+      $('.nav i.first').addClass("active"); // la class "active" viene aggiunta alla prima icona
 
       navActive.removeClass("active"); // rimozione class "active" all'ultima icona della navigazione
       $('.nav i.first').addClass("active"); // la class "active" viene aggiunta alla prima icona
 
     } else if (e.keyCode === 37) {
-      // rimuovo la class "active" all'immagine
-      imgActive.removeClass("active");
+
+      imgActive.addClass("prev-to-left-2");
+      imgActive.removeClass("active prev-to-left");
+      imgActive.next().removeClass("prev-to-left-2 next-to-right next-to-right-2");
+      imgActive.removeClass("next-to-right next-to-right-2");
+      imgActive.prev().removeClass("next-to-right next-to-right-2");
 
       // aggiungo la class "active" all'img successiva a quella a cui ho rimosso la classe
-      imgActive.prev().addClass("active");
+      imgActive.prev().addClass("active prev-to-left");
+
+      // rimuovo la class "active" all'icona della navigazione a pallini
+
+
+      // rimuovo la class "active" all'immagine
+
+
+      // aggiungo la class "active" all'img successiva a quella a cui ho rimosso la classe
+
 
       // rimuovo la class "active" all'icona della navigazione a pallini
       navActive.removeClass("active");
@@ -152,12 +212,21 @@ $(document).ready(function(){
 
     if ((e.keyCode === 37) && (imgActive.hasClass('first'))) {
 
-      imgActive.removeClass("active"); // rimozione class "active" alla prima immagine
-      $('.carousel-wrapper img.last').addClass("active"); // la class "active" viene aggiunta all'ultima immagine
+      imgActive.addClass("prev-to-left-2");
+      imgActive.removeClass("active next-to-right"); // rimozione class "active" alla prima immagine
+      imgActive.prev().removeClass("next-to-right-2 prev-to-left prev-to-left-2");
+      imgActive.removeClass("prev-to-left next-to-right-2");
+      imgActive.next().removeClass("prev-to-left prev-to-left-2");
+
+      $('.carousel-wrapper img.last').addClass("active prev-to-left"); // la class "active" viene aggiunta all'ultima immagine
 
       navActive.removeClass("active"); // rimozione class "active" alla prima icona della navigazione
       $('.nav i.last').addClass("active"); // la class "active" viene aggiunta alla prima icona
 
+    }
+
+    if ((e.keyCode === 37) && (imgActive.hasClass('last'))) {
+      $('.carousel-wrapper img.first').removeClass("prev-to-left prev-to-left-2 next-to-right next-to-right-2");
     }
   }
 
