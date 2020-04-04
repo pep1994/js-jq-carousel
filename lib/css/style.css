@@ -30,7 +30,6 @@
 
 .carousel-wrapper img.active {
   opacity: 1;
-  transition: opacity 1s;
 }
 
 .next-to-right {

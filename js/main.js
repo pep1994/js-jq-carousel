@@ -32,7 +32,7 @@ $(document).ready(function(){
     // se lo slider arriva all'ultima immagine la class "active" viene data alla prima immagine
     if (imgActive.hasClass('last')) {
 
-      imgActive.addClass('next-to-right-2'); 
+      imgActive.addClass('next-to-right-2');
       imgActive.removeClass("active next-to-right"); // rimozione class "active" all'ultima immagine
       imgActive.prev().removeClass("next-to-right-2 prev-to-left prev-to-left-2");
       imgActive.removeClass("prev-to-left prev-to-left-2");
@@ -129,8 +129,11 @@ $(document).ready(function(){
     var idx = navBall.index(this); // indice del pallino cliccato
     console.log(idx);
     $('.carousel-wrapper img').removeClass('active next-to-right next-to-right-2 prev-to-left prev-to-left-2'); // faccio somparire tutte le immagini
-    $('.carousel-wrapper img').eq(idx).addClass('active'); // do la class active solo a quella immagine che ha lo stesso indice del pallino
-
+    $('.carousel-wrapper img').eq(idx).addClass('active next-to-right'); // do la class active solo a quella immagine che ha lo stesso indice del pallino
+    $('.carousel-wrapper img.active').prev().addClass('next-to-right-2');
+    if ($('.carousel-wrapper img.active').hasClass('first')) {
+      $('.carousel-wrapper img.active').next().addClass('prev-to-left-2');
+    }
   }
 
   // funzione movekey
